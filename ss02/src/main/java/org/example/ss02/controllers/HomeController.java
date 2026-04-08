@@ -36,4 +36,23 @@ public class HomeController {
         return "form_add";
     }
 
+    // Thay vì gửi đối tượng fix cứng trong Java
+    // Chuyển đổi là sang tương tác database lấy từ database
+    // Hiển thị dưới dạng bảng bên JSP + JSTL
+
+    // Giải pháp:
+    // Bước làm:
+    /**
+     * 1. Tạo class Person
+     * 2. Tương tác với database
+     *     - Lấy SELECT * FROM persons
+     *     - Chuyển đổi thành đối tượng
+     *     - Thêm vào danh sách List<Person>
+     * 3. Lưu trữ danh sách đối tượng List
+     * 4. Gửi dữ liệu sang JSP + JSTL
+     *     - thông qua HttpServletRequest request.setAttribute()
+     * 5. JSP:
+     *     - Sử dụng c:forEach để hiển thị dưới dạng bảng
+     * */
+
 }
