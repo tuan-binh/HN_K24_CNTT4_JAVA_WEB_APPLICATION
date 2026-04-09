@@ -1,0 +1,97 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Title</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--    <h1>Lớp CNTT4</h1>-->
+<!--&lt;!&ndash; th:text tương đương c:out &ndash;&gt;-->
+<!--&lt;!&ndash; th:each tương đương với c:forEach &ndash;&gt;-->
+<!--&lt;!&ndash; th:if tương đương với c:if &ndash;&gt;-->
+<!--&lt;!&ndash; th:unless &ndash;&gt;-->
+
+<!--    <table border="1" cellpadding="10" cellspacing="10">-->
+<!--        <thead>-->
+<!--        <tr>-->
+<!--            <th>ID</th>-->
+<!--            <th>Name</th>-->
+<!--            <th>Price</th>-->
+<!--            <th>Stock</th>-->
+<!--            <th>Status</th>-->
+<!--        </tr>-->
+<!--        </thead>-->
+<!--        <tbody>-->
+<!--        <tr th:each=" p : ${shop} ">-->
+<!--            <td th:text="${p.id}"></td>-->
+<!--            <td th:text="${p.name}"></td>-->
+<!--            <td th:text="${p.price}"></td>-->
+<!--            <td th:text="${p.stock}"></td>-->
+<!--            <td th:text="${p.status ? 'Còn bán' : 'Hết hàng'}"></td>-->
+<!--        </tr>-->
+<!--        </tbody>-->
+<!--    </table>-->
+
+<!--</body>-->
+<!--</html>-->
+
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <title>Home</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+
+<div th:replace="/layouts/layout::header(name='Nguyễn Tiến Minh',age=20)"></div>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Stock</th>
+        <th>Status</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each=" p : ${shop}" th:object="${p}">
+        <td th:text="*{id}"></td>-->
+        <td th:text="*{name}"></td>
+        <td th:text="*{price}"></td>
+        <td th:text="*{stock}"></td>
+        <td th:text="*{status} ? 'Còn bán' : 'Hết hàng'"></td>
+        <td>
+            <a th:href="@{|/delete/*{id}|}">Xoá</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<div th:replace="/layouts/layout::footer"></div>
+
+<th:block th:replace="/layouts/layout::navbar"></th:block>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+</html>
