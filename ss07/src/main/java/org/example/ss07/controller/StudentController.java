@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 @RequestMapping
@@ -34,7 +35,7 @@ public class StudentController {
     @PostMapping("/handle-add")
     public String handleAdd(
             @ModelAttribute(name = "student") Student student
-    ) {
+            ) {
         System.out.println(student);
         studentRepository.addStudent(student);
         return "redirect:/";

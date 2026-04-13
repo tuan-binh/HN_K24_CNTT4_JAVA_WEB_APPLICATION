@@ -4,6 +4,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.thymeleaf.spring6.SpringTemplateEngine;
 import org.thymeleaf.spring6.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring6.view.ThymeleafViewResolver;
@@ -11,7 +13,8 @@ import org.thymeleaf.spring6.view.ThymeleafViewResolver;
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = "org.example.ss07")
-public class AppConfig {
+// Để câu hình được các đường dẫn tương đối
+public class AppConfig implements WebMvcConfigurer {
 
     // 1. Bean SpringResourceTemplateResolver - đọc cấu hình folder file view
     @Bean
@@ -43,4 +46,14 @@ public class AppConfig {
         return resolver;
     }
 
+    // Cấu hình những đường dẫn tương đối
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        String path = "D:\\RIKKEI\\HN-K24-CNTT4\\ss07\\src\\main\\webapp\\images\\";
+
+        // Đường dẫn tương đối chúng ta sẽ sử dụng
+        registry.addResourceHandler("/images/**")
+                // Đường dẫn tuyệt chỉ đến đích danh thư mục chính xác
+                .addResourceLocations("file:" + path);
+    }
 }

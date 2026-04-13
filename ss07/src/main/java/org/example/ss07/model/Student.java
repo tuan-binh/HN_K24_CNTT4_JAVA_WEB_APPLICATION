@@ -6,6 +6,7 @@ public class Student {
     private boolean gender;
     private int age;
     private String address;
+    private String avatar;
 
     public Student() {
     }
