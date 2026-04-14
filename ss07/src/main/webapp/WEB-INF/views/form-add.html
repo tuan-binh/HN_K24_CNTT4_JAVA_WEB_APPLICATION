@@ -38,12 +38,16 @@
     <!-- Trường input cho age  -->
     <div class="form-group">
         <label th:for="*{age}">Age</label>
-        <input type="number" class="form-control" th:field="*{age}" aria-describedby="helpId" placeholder="">
+        <label>
+            <input type="number" class="form-control" th:field="*{age}" aria-describedby="helpId" placeholder="">
+        </label>
     </div>
     <!-- Trường input cho address -->
     <div class="form-group">
         <label th:for="*{address}">Address</label>
-        <textarea class="form-control" th:field="*{address}" rows="3"></textarea>
+        <label>
+            <textarea class="form-control" th:field="*{address}" rows="3"></textarea>
+        </label>
     </div>
 
     <!-- Thẻ submit form -->
