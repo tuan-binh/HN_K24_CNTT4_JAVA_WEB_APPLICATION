@@ -1,5 +1,7 @@
 package org.example.ss08.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.time.LocalDate;
 
 // Wrapper Class
@@ -11,6 +13,7 @@ public class Person {
     private Long id;
     private String name;
     private Gender gender;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateOfBirth;
     private Integer age;
     private String email;

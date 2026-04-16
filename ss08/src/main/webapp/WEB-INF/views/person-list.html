@@ -15,6 +15,7 @@
         <th>DOB</th>
         <th>Age</th>
         <th>Email</th>
+        <th colspan="2">Actions</th>
     </tr>
     </thead>
     <tbody>
@@ -26,6 +27,12 @@
         <td th:text="${#temporals.format(p.dateOfBirth,'dd/MM/yyyy')}"></td>
         <td th:text="${p.age}"></td>
         <td th:text="${p.email}"></td>
+        <td>
+            <a th:href="@{| /view-edit/${p.id} |}">Sửa</a>
+        </td>
+        <td>
+            <a href="">Xoá</a>
+        </td>
     </tr>
     </tbody>
 </table>

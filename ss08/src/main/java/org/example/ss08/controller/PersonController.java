@@ -7,10 +7,7 @@ import org.example.ss08.model.Person;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -26,7 +23,7 @@ public class PersonController {
                     new Person(
                             1L,
                             "Trần Việt Nam",
-                            Gender.MALE,
+                            Gender.FEMALE,
                             LocalDate.of(2006, 8, 6),
                             19,
                             "tranvietnam@gmail.com"
@@ -72,6 +69,40 @@ public class PersonController {
                 personDTO.getEmail()
         );
         personList.add(newPerson);
+        return "redirect:/";
+    }
+
+    @GetMapping("/view-edit/{id}")
+    public String viewEdit(
+            @PathVariable(name = "id") Long editId,
+            Model model
+    ) {
+        // 1. Tìm được cái đối tượng cần sửa
+        Person person = personList.stream()
+                .filter(p -> p.getId().equals(editId))
+                .findFirst()
+                .orElse(null);
+
+        model.addAttribute("personDTO", person);
+        return "person-form-edit";
+    }
+
+    @PostMapping("handle-update")
+    public String handleUpdate(
+            @ModelAttribute(name = "personDTO") PersonDTO personDTO
+    ) {
+
+        for (Person p : personList) {
+            if (p.getId().equals(personDTO.getId())) {
+                p.setName(personDTO.getName());
+                p.setGender(personDTO.getGender());
+                p.setDateOfBirth(personDTO.getDateOfBirth());
+                p.setAge(personDTO.getAge());
+                p.setEmail(personDTO.getEmail());
+                break;
+            }
+        }
+
         return "redirect:/";
     }
 
