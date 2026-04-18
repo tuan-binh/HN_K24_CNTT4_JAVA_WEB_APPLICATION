@@ -36,16 +36,19 @@ public class PersonDTO {
     @EmailExist
     private String email;
 
+    private MultipartFile avatar;
+
     public PersonDTO() {
     }
 
-    public PersonDTO(Long id, String name, Gender gender, LocalDate dateOfBirth, Integer age, String email) {
+    public PersonDTO(Long id, String name, Gender gender, LocalDate dateOfBirth, Integer age, String email, MultipartFile avatar) {
         this.id = id;
         this.name = name;
         this.gender = gender;
         this.dateOfBirth = dateOfBirth;
         this.age = age;
         this.email = email;
+        this.avatar = avatar;
     }
 
     public Long getId() {
@@ -94,5 +97,13 @@ public class PersonDTO {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public MultipartFile getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(MultipartFile avatar) {
+        this.avatar = avatar;
     }
 }

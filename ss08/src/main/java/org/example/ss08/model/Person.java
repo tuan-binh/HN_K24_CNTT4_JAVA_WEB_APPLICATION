@@ -18,16 +18,19 @@ public class Person {
     private Integer age;
     private String email;
 
+    private String avatar;
+
     public Person() {
     }
 
-    public Person(Long id, String name, Gender gender, LocalDate dateOfBirth, Integer age, String email) {
+    public Person(Long id, String name, Gender gender, LocalDate dateOfBirth, Integer age, String email, String avatar) {
         this.id = id;
         this.name = name;
         this.gender = gender;
         this.dateOfBirth = dateOfBirth;
         this.age = age;
         this.email = email;
+        this.avatar = avatar;
     }
 
     public Long getId() {
@@ -76,5 +79,13 @@ public class Person {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 }

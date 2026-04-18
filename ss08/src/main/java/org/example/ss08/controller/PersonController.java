@@ -8,7 +8,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,16 +22,16 @@ import java.util.List;
 public class PersonController {
 
     public static List<Person> personList = new ArrayList<>(
-            Arrays.asList(
-                    new Person(
-                            1L,
-                            "Trần Việt Nam",
-                            Gender.FEMALE,
-                            LocalDate.of(2006, 8, 6),
-                            19,
-                            "tranvietnam@gmail.com"
-                    )
-            )
+//            Arrays.asList(
+//                    new Person(
+//                            1L,
+//                            "Trần Việt Nam",
+//                            Gender.FEMALE,
+//                            LocalDate.of(2006, 8, 6),
+//                            19,
+//                            "tranvietnam@gmail.com"
+//                    )
+//            )
     );
 
     @GetMapping
@@ -66,10 +69,32 @@ public class PersonController {
                 personDTO.getGender(),
                 personDTO.getDateOfBirth(),
                 personDTO.getAge(),
-                personDTO.getEmail()
+                personDTO.getEmail(),
+                uploadFile(personDTO.getAvatar())
         );
         personList.add(newPerson);
         return "redirect:/";
+    }
+
+    public String uploadFile(MultipartFile file) {
+        String path = "D:\\RIKKEI\\HN-K24-CNTT4\\ss08\\src\\main\\webapp\\images\\";
+
+        if(file.isEmpty()) {
+            return "";
+        }
+
+        String fileName = file.getOriginalFilename();
+
+        File convertFile = new File(path + fileName);
+
+        try {
+            file.transferTo(convertFile);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        return fileName;
+
     }
 
     @GetMapping("/view-edit/{id}")
@@ -99,11 +124,27 @@ public class PersonController {
                 p.setDateOfBirth(personDTO.getDateOfBirth());
                 p.setAge(personDTO.getAge());
                 p.setEmail(personDTO.getEmail());
+                p.setAvatar(
+                        personDTO.getAvatar().isEmpty() ?
+                                p.getAvatar() :
+                                uploadFile(personDTO.getAvatar())
+                );
                 break;
             }
         }
 
         return "redirect:/";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String handleDelete(
+            @PathVariable(name = "id") Long deleteId
+    ) {
+
+        personList.removeIf( p -> p.getId().equals(deleteId) );
+
+        return "redirect:/";
+
     }
 
 }

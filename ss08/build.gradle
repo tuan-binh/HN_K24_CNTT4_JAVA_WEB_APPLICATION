@@ -29,7 +29,7 @@ dependencies {
     // 3. Validation
     implementation("jakarta.validation:jakarta.validation-api:3.0.2")
     implementation("org.hibernate.validator:hibernate-validator:8.0.1.Final")
-
+    implementation("org.apache.commons:commons-fileupload2-jakarta:2.0.0-M1")
     compileOnly('jakarta.servlet:jakarta.servlet-api:6.1.0')
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")

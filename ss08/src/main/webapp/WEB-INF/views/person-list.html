@@ -15,6 +15,7 @@
         <th>DOB</th>
         <th>Age</th>
         <th>Email</th>
+        <th>Avatar</th>
         <th colspan="2">Actions</th>
     </tr>
     </thead>
@@ -28,10 +29,15 @@
         <td th:text="${p.age}"></td>
         <td th:text="${p.email}"></td>
         <td>
+            <img th:src="@{ | /images/${p.avatar} | }" alt="">
+        </td>
+        <td>
             <a th:href="@{| /view-edit/${p.id} |}">Sửa</a>
         </td>
         <td>
-            <a href="">Xoá</a>
+            <a
+                    onclick="return confirm('Bạn có chắc chắn muốn xoá hay không?')"
+                    th:href="@{ | /delete/${p.id} | }">Xoá</a>
         </td>
     </tr>
     </tbody>
