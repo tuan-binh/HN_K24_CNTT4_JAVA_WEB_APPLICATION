@@ -29,21 +29,29 @@
             <version>3.1.4.RELEASE</version>
         </dependency>
 
-        <!-- 3. Commons FileUpload2 -->
+        <!-- 3. Thymeleaf Layout Dialect -->
+        <dependency>
+            <groupId>nz.net.ultraq.thymeleaf</groupId>
+            <artifactId>thymeleaf-layout-dialect</artifactId>
+            <version>3.0.0</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <!-- 4. Commons FileUpload2 -->
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-fileupload2-jakarta</artifactId>
             <version>2.0.0-M1</version>
         </dependency>
 
-        <!-- 4. Jakarta Validation API -->
+        <!-- 5. Jakarta Validation API -->
         <dependency>
             <groupId>jakarta.validation</groupId>
             <artifactId>jakarta.validation-api</artifactId>
             <version>3.0.2</version>
         </dependency>
 
-        <!-- 5. Hibernate Validator -->
+        <!-- 6. Hibernate Validator -->
         <dependency>
             <groupId>org.hibernate.validator</groupId>
             <artifactId>hibernate-validator</artifactId>
